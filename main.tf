@@ -1,3 +1,7 @@
+terraform {
+  required_version = "~> 0.12.0"
+}
+
 data "aws_lambda_function" "ion" {
   depends_on    = [var.dependencies]
   function_name = "${var.query_group_codedeploy_deployment_group}-${var.function_name}"
@@ -26,7 +30,7 @@ resource "aws_iam_role_policy_attachment" "driver_access" {
 }
 
 resource "aws_lambda_event_source_mapping" "driver" {
-  event_source_arn = var.driver_queue_arn
   enabled          = true
+  event_source_arn = var.driver_queue_arn
   function_name    = data.aws_lambda_function.ion.function_name
 }

@@ -1,5 +1,5 @@
 variable "dependencies" {
-  type = "list"
+  type = list(string)
 }
 
 variable "driver_queue_arn" {}
